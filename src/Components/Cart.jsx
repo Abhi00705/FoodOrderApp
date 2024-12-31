@@ -10,21 +10,25 @@ const Cart = () => {
   function clickHandler(id){ {/* removeing item from redux store*/}
     dispatch(removeState(id));
   }
+  console.log(card)
   return (
-    <div>
+    <div className='flex gap-10 flex-wrap justify-center overflow-x-hidden'>
       {
-        card.map((item) =>(
-          <div className="border-2 border-gray-200 p-4 m-4 w-[20rem] h-[20rem] gap-2" key={item?.info?.id}>
+        card.map((item) =>
+           (
+          <div className="border-2  border-gray-200 p-4 m-4 w-[20rem] gap-2" key={item?.info?.id}>
           
-          <img src={img + item?.info?.cloudinaryImageId} alt="img" className='w-[95%] h-[60%]'/>
-          <p>{item?.info?.name}</p>
-          <p>{item?.info?.cuisines.join(", ")}</p>
-          <p>{item?.info?.costForTwo}</p>
-          <p>{item?.info?.locality}</p>
+          <img src={img + item?.cloudinaryImageId} alt="img" className='w-[95%] h-[60%] object-cover object-center'/>
+          <p>{item?.name}</p>
+          <p>{item?.cuisines.join(", ")}</p>
+          <p>{item?.costForTwo}</p>
+          <p>{item?.locality}</p>
+          <p className='text-lg font-bold text-red-600'>{item?.count}</p>
           <button onClick={() => clickHandler(item.id)}> - </button>
           </div>
         ))
       }
+      
     </div>
   )
 }
