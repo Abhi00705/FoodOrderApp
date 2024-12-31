@@ -16,11 +16,13 @@ const Body = () => {
      async function fetchData(){
           const response = await fetch(api);
           const json = await response.json();
-          console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          setFilterList(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          setList (json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          console.log(json)
+          console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setFilterList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setList (json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
         useEffect(() => {
+          console.log("API Calling")
           fetchData();
         },[])
         console.log(list);
@@ -66,7 +68,7 @@ const Body = () => {
                    <p>{item?.info?.cuisines.join(", ")}</p>
                    <p>{item?.info?.costForTwo}</p>
                    <p>{item?.info?.locality}</p>
-                    <button onClick={() => {clickHandler(item)}}>+</button>
+                    <button onClick={() => {clickHandler(item?.info)}}>+</button>
                    </div>
                  ))
                }
