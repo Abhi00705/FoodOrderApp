@@ -17,12 +17,12 @@ const Body = () => {
      async function fetchData(){
           const response = await fetch(api);
           const json = await response.json();
-          console.log(json);
-          console.log("checking "+json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          setFilterList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          setList (json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setFilterList(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setList (json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
         useEffect(() => {
+          console.log("API Calling")
           fetchData();
         },[])
     
@@ -69,11 +69,11 @@ const Body = () => {
                    <div className="border-2 border-gray-200 p-4 m-4 w-[20rem]  gap-2" key={item?.info?.id}>
                    
                    <img src={img + item?.info?.cloudinaryImageId} alt="img" className='w-[95%] h-[60%]'/>
-                   <p className='font-sans font-extrabold'>{item?.info?.name}</p>
-                   <p className='text-gray-500'>{item?.info?.cuisines.join(", ")}</p>
-                   <p className='text-gray-700'>{item?.info?.costForTwo}</p>
-                   <p className='text-gray-700'>{item?.info?.locality}</p>
-                    <button onClick={() => {clickHandler(item)}} className='border-2 border-black rounded-lg bg-black text-white cursor-pointer shadow-lg shadow-gray-500'><CiSquarePlus className='text-3xl'/></button>
+                   <p>{item?.info?.name}</p>
+                   <p>{item?.info?.cuisines.join(", ")}</p>
+                   <p>{item?.info?.costForTwo}</p>
+                   <p>{item?.info?.locality}</p>
+                    <button onClick={() => {clickHandler(item)}}>+</button>
                    </div>
                  ))
                }
