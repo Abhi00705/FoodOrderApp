@@ -1,32 +1,41 @@
 import React, { useState } from 'react'
 import faqData from '../util/faq'
-import { CiSquareMinus } from "react-icons/ci";
-import { CiSquarePlus } from "react-icons/ci";
+
 
 const Help = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const  clickHandler = (index)=>{
+    setActiveIndex((preVal) =>{
+      if(preVal === index){
+        return null;
+      }
+      else{
+        return index;
+      }
+    });
+  }
 
 
   return (
-    <div className='flex flex-col gap-4 bg-gray-500'>
+    <div className='flex flex-col gap-3'>
         <h1>FQA Accordian</h1>
-        {
-          faqData.map((item, index) => (
-            <div className='bg-gray-500'>
-              <div className='' onClick={() => handleClick(index)}>
+        <div className='flex flex-col gap-2'>
+          {
+            faqData.map((item, index) =>(
+              <div className='shadow-md  ' key={index}>
+                <span className='flex gap-4 bg-gray-400 cursor-pointer' onClick={()=>clickHandler(index)}>
+                    <h1 className='inline'>{item.question}</h1>
+                    
+                </span>
                 {
-                  activeIndex === index ? <CiSquareMinus /> : <CiSquarePlus />
-
+                  activeIndex === index && <h2 className='bg-gray-300'>{item.answer}</h2>
                 }
+                
               </div>
-               <div className='bg-gray-100 p-1'>
-              <h1 className= 'font-sans font-semibold text-2xl p-2'>{item.question}</h1>
-              <p className='font-sans text-lg font-light pl-2'>{item.answer}</p>
-            </div>
-
-            </div>
-          ))
-        }
+            ))
+          }
+        </div>
+        
     </div>
   )
 }
